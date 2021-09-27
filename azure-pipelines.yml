@@ -21,5 +21,7 @@ steps:
     versionType: 'CurrentVersion'
     projectJsonPath: '$(Build.SourcesDirectory)'
     orchestratorConnection: 'UiPathOrchTenantOne'
-    outputPath: '$(Build.ArtifactStagingDirectory)\Output'
+    outputPath: '$(Build.ArtifactStagingDirectory)'
     traceLevel: 'Information'
+- publish: '$(Build.ArtifactStagingDirectory)'
+  artifact: drop

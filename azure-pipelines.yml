@@ -25,3 +25,10 @@ steps:
     traceLevel: 'Information'
 - publish: '$(Build.ArtifactStagingDirectory)'
   artifact: drop
+- task: UiPathDeploy@2
+  inputs:
+    orchestratorConnection: 'UiPathOrchTenantOne'
+    packagesPath: '$(Build.ArtifactStagingDirectory)'
+    folderName: 'DFolder'
+    entryPoints: 'Main.xaml'
+    traceLevel: 'Information'

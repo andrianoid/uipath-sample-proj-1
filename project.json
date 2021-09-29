@@ -46,6 +46,12 @@
       "uniqueId": "242d8bcb-6492-47ff-bee9-c3d6a8d0b57a",
       "input": [],
       "output": []
+    },
+    {
+      "filePath": "Test.xaml",
+      "uniqueId": "dfecfcce-f4db-4f73-b146-caadefbdb986",
+      "input": [],
+      "output": []
     }
   ],
   "isTemplate": false,

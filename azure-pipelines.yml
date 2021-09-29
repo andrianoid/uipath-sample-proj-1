@@ -24,7 +24,7 @@ steps:
 #     outputPath: '$(Build.ArtifactStagingDirectory)'
 #     traceLevel: 'Information'
 
-- script: C:\UiPath\UiRobot.exe pack $(Build.SourcesDirectory)\project.json -o $(BuildArtifactSTagingDirectory)\ -v 1.0.$(Build.BuildNumber)
+- script: C:\UiPath\UiRobot.exe pack $(Build.SourcesDirectory)\project.json -o $(Build.ArtifactStagingDirectory)\ -v 1.0.$(Build.BuildNumber)
   displayName: 'Build the artifact!'
 
 

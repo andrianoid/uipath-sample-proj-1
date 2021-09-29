@@ -33,7 +33,7 @@ steps:
 - powershell: |
     Import-Module UiPath.Powershell
     $token = Get-UiPathAuthToken -AccountName $(tOneAccountName) -ClientId $(tOneClientId) -TenantName $(tOneTenantName) -UserKey $(tOneUserKey)
-    Add-UiPathPackage -PackageFile $(Build.ArtifactStagingDirectory)\uipath-sample-proj-1.0.$(Build.BuildNumber).nupkg -AuthToken $token
+    Add-UiPathPackage -PackageFile $(Build.ArtifactStagingDirectory)\uipath-sample-proj-1.1.0.$(Build.BuildNumber).nupkg -AuthToken $token
 
 
 # - task: UiPathDeploy@2

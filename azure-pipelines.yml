@@ -27,6 +27,7 @@ steps:
   artifact: drop
 
 - powershell: |
+    Write-Host '$(tOneAccountName)'
     Import-Module UiPath.Powershell
     $token = Get-UiPathAuthToken -AccountName $(tOneAccountName) -ClientId $(tOneClientId) -TenantName $(tOneTenantName) -UserKey $(tOneUserKey)
     Add-UiPathPackage -PackageFile $(Build.ArtifactStagingDirectory) -AuthToken $token

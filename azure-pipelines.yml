@@ -1,7 +1,7 @@
 # uipath-sample-proj-1 pipeline
 
 trigger:
-- main
+- dev
 
 variables:
 - name: agent.preferPowerShellOnContainers

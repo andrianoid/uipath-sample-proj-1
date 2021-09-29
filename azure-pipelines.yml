@@ -16,19 +16,24 @@ container:
 
 steps:
 
-- task: UiPathPack@2
-  inputs:
-    versionType: 'CurrentVersion'
-    projectJsonPath: '$(Build.SourcesDirectory)'
-    orchestratorConnection: 'UiPathOrchTenantOne'
-    outputPath: '$(Build.ArtifactStagingDirectory)'
-    traceLevel: 'Information'
+# - task: UiPathPack@2
+#   inputs:
+#     versionType: 'CurrentVersion'
+#     projectJsonPath: '$(Build.SourcesDirectory)'
+#     orchestratorConnection: 'UiPathOrchTenantOne'
+#     outputPath: '$(Build.ArtifactStagingDirectory)'
+#     traceLevel: 'Information'
+
+- script: C:\UiPath\UiRobot.exe pack $(Build.SourcesDirectory)\project.json -o $(BuildArtifactSTagingDirectory)\ -v 1.0.$(Build.BuildNumber)
+  displayName: 'Build the artifact!'
+
+
 - publish: '$(Build.ArtifactStagingDirectory)'
   artifact: drop
 - powershell: |
     Import-Module UiPath.Powershell
     $token = Get-UiPathAuthToken -AccountName $(tOneAccountName) -ClientId $(tOneClientId) -TenantName $(tOneTenantName) -UserKey $(tOneUserKey)
-    Add-UiPathPackage -PackageFile $(Build.ArtifactStagingDirectory)\uipath-sample-proj-1.1.0.0.nupkg -AuthToken $token
+    Add-UiPathPackage -PackageFile $(Build.ArtifactStagingDirectory)\uipath-sample-proj-1.$(Build.BuildNumber).nupkg -AuthToken $token
 
 
 # - task: UiPathDeploy@2

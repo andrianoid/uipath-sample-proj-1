@@ -26,10 +26,16 @@ steps:
 - publish: '$(Build.ArtifactStagingDirectory)'
   artifact: drop
 
-- task: UiPathDeploy@2
-  inputs:
-    orchestratorConnection: 'UiPathOrchTenantOne'
-    packagesPath: '$(Build.ArtifactStagingDirectory)'
-    folderName: 'DFolder'
-    entryPoints: 'Main.xaml'
-    traceLevel: 'Information'
+- powershell: |
+    Import-Module UiPath.Powershell
+    $token = Get-UiPathAuthToken -AccountName ${env:tOneAccountName} -ClientId ${env:tOneClientId} -TenantName ${env:tOneTenantName} -UserKey ${env:tOneUserKey}
+    Add-UiPathPackage -PackageFile $(Build.ArtifactStagingDirectory) -AuthToken $token
+
+
+# - task: UiPathDeploy@2
+#   inputs:
+#     orchestratorConnection: 'UiPathOrchTenantOne'
+#     packagesPath: '$(Build.ArtifactStagingDirectory)'
+#     folderName: 'DFolder'
+#     entryPoints: 'Main.xaml'
+#     traceLevel: 'Information'

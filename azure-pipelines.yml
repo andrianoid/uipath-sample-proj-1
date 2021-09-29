@@ -26,11 +26,10 @@ steps:
 - publish: '$(Build.ArtifactStagingDirectory)'
   artifact: drop
 - powershell: |
-    Write-Host 'account-name: $(tOneAccountName)'
-- powershell: |
     Import-Module UiPath.Powershell
     $token = Get-UiPathAuthToken -AccountName $(tOneAccountName) -ClientId $(tOneClientId) -TenantName $(tOneTenantName) -UserKey $(tOneUserKey)
-    Add-UiPathPackage -PackageFile $(Build.ArtifactStagingDirectory) -AuthToken $token
+    $packageFile = $(Build.ArtifactStagingDirectory)\uipath-sample-proj-1.$(Build.BuildNumber).nupkg
+    Add-UiPathPackage -PackageFile $packageFile -AuthToken $token
 
 
 # - task: UiPathDeploy@2

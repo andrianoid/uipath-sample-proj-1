@@ -25,9 +25,9 @@ steps:
     traceLevel: 'Information'
 - publish: '$(Build.ArtifactStagingDirectory)'
   artifact: drop
-
 - powershell: |
-    Write-Host '$(tOneAccountName)'
+    Write-Host 'account-name: $(tOneAccountName)'
+- powershell: |
     Import-Module UiPath.Powershell
     $token = Get-UiPathAuthToken -AccountName $(tOneAccountName) -ClientId $(tOneClientId) -TenantName $(tOneTenantName) -UserKey $(tOneUserKey)
     Add-UiPathPackage -PackageFile $(Build.ArtifactStagingDirectory) -AuthToken $token
